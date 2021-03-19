@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>repl.it</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<h2>Exponential Idle Student Optimizer</h2>
+	<noscript>
+		<h3>Please enable JavaScript and reload the page.</h3>
+	</noscript>
+	<p>
+		This page will determine the most optimal distribution for your sigma /
+        students given your current number of students, number of stars, t, and f(t).
+	</p>
+	<p>
+		The values entered should come from the exact same point in time or as close
+        together as you can get them all.
+	</p>
+	<p>
+		For your current students, enter the number of students that have not been
+        allocated to theories. For your t, enter the number in the top left corner.
+        For your f(t), input the number after the ee in the top-left corner.
+        For your current stars, go into the "Statistics" menu and enter the number
+        under "Total Stars".
+	</p>
+	<p>
+		Unless you know what you're doing, you should leave the bottom four entries
+        alone.
+	</p>
+	<p>This page is currently incomplete.</p>
+	<label for="students">Sigma / Students:</label>
+    <input id="students" value="18"><br>
+    <label for="t">t:</label>
+    <input id="t" value="1.5e9"><br>
+    <label for="ft">f(t):</label>
+    <input id="ft" value="4995"><br>
+    <label for="stars">Stars:</label>
+    <input id="stars" value="3e6"><br>
+    <label for="adbonus">Ad Bonus</label>
+    <input type="checkbox" id="adbonus"><br>
+    <label for="ignoretheories">Ignore Theories</label>
+    <input type="checkbox" id="ignoretheories"><br>
+    <label for="acceleration">Acceleration</label>
+    <input type="checkbox" id="acceleration"><br>
+    <label for="accelmult">Acceleration Multiplier:</label>
+    <input id="accelmult" value="2.8538"></br>
+    <input type="button" value="Optimize!" onclick="optimize()">
+    <p id="output"></p>
+    <script src="script.js"></script>
+</body>
+
+</html>
