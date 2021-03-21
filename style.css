@@ -3,6 +3,27 @@ body {
     background-color: #222;
     text-align: left;
 }
+
+/* unvisited link */
+a:link {
+    color: #777;
+}
+
+/* visited link */
+a:visited {
+    color: #444;
+}
+
+/* mouse over link */
+a:hover {
+    color: #ccc;
+}
+
+/* selected link */
+a:active {
+    color: #333;
+}
+
 .text-color {
     color: #ccc;
     text-align: center;
