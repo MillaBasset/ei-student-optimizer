@@ -8,6 +8,9 @@ function optimize() {
     var ignoreTheories = document.getElementById("ignoretheories").checked
     var acceleration = document.getElementById("acceleration").checked
     var accelerationBonus = parseFloat(document.getElementById("accelmult").value)
+    
+    if(isNaN(accelerationBonus))
+        accelerationBonus = 2.8538;
 
     var log10dmu = ft
     var log10db = (ft * 0.8) - Math.log10(4e6)
