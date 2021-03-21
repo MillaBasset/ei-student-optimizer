@@ -46,17 +46,15 @@ input {
     border-radius: 2px;
     width: 100%;
 }
-input[type="checkbox"]:checked {
-
-}
 input:hover {
     background-color: #383838;
 }
 
 .button {
-    background-color: gray;
+    background-color: #2f2f2f;
+    color: #ccc;
     text-align: center;
-    padding: 10px 30px;
+    padding: 10px 70px;
     border: 1px solid #444;
     margin: auto;
     margin-top: 10px;
