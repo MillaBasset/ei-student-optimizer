@@ -120,5 +120,3 @@ function optimize() {
         "<br>Student distribution: " + order.join(", ")
     )
 }
-
-optimize()
