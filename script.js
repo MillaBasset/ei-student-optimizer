@@ -113,7 +113,7 @@ function optimize() {
         "<br>Acceleration: " + acceleration + " and " + accelerationBonus + "x" +
         "<br>" +
         */
-        "Calculated dt: " + dt + "<br>Phi: " + phiDigits + "e" + Math.floor(phi) +
+        "Calculated dt: " + dt.toPrecision(3) + "<br>Phi: " + phiDigits.toPrecision(3) + "e" + Math.floor(phi) +
         "<br>Student distribution: " + order.join(", ")
     )
 }

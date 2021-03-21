@@ -1,0 +1,71 @@
+body {
+    font-family: "Lato", sans-serif; 
+    background-color: #222;
+    text-align: left;
+}
+.text-color {
+    color: #ccc;
+    text-align: center;
+}
+.text-color-light {
+    color: #999;
+    text-align: center;
+}
+
+.cb-container {
+    text-align: center;
+}
+
+.cb-div {
+    display: inline-block;
+    text-align: center;
+    margin: auto;
+}
+
+label {
+    color: #ccc;
+    text-align: left;
+}
+
+.output {
+    text-align: center;
+    color: #ccc;
+}
+
+.container {
+    margin: auto;
+}
+
+input {
+    background-color: #2f2f2f;
+    color: #ccc;
+    padding: 10px 10px;
+    margin: 5px 0px;
+    box-sizing: border-box;
+    border: 1px solid #444;
+    border-radius: 2px;
+    width: 100%;
+}
+input[type="checkbox"]:checked {
+
+}
+input:hover {
+    background-color: #383838;
+}
+
+.button {
+    background-color: gray;
+    text-align: center;
+    padding: 10px 30px;
+    border: 1px solid #444;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.button:disabled {
+    color: #777;
+    background-color: #282828;
+}
+.button:hover:enabled {
+    background-color: #383838;
+}

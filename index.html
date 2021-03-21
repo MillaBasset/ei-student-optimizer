@@ -9,54 +9,79 @@
 </head>
 
 <body>
-	<h2>Exponential Idle Student Optimizer</h2>
-	<h3>
-		Made by <a href="https://github.com/Niedzielan" target="_blank">Niedzielan</a>
-		and <a href="https://github.com/SashLilac" target="_blank">Milla</a>
-	</h3>
-	<noscript>
-		<h3>Please enable JavaScript and reload the page.</h3>
-	</noscript>
-	<p>
-		This page will determine the most optimal distribution for your sigma /
-        students given your current number of students, number of stars, t, and f(t).
-	</p>
-	<p>
-		The values entered should come from the exact same point in time or as close
-        together as you can get them all.
-	</p>
-	<p>
-		For your current students, enter the number of students that have not been
-        allocated to theories. For your t, enter the number in the top left corner.
-        For your f(t), input the number after the ee in the top-left corner.
-        For your current stars, go into the "Statistics" menu and enter the number
-        under "Total Stars".
-	</p>
-	<p>
-		Ad-bonus should be checked if you have the ad-bonus active. Acceleration
-		should <b><i>only</i></b> be checked if you're planning to use the button
-		regularly, not if you only use it once in a while. The last two options
-		should be left alone unless you know what you're doing.
-	</p>
-	<label for="students">Sigma / Students:</label>
-    <input id="students" value="18"><br>
-    <label for="t">t:</label>
-    <input id="t" value="1.5e9"><br>
-    <label for="ft">f(t):</label>
-    <input id="ft" value="4995"><br>
-    <label for="stars">Stars:</label>
-    <input id="stars" value="3e6"><br>
-    <label for="adbonus">Ad Bonus</label>
-    <input type="checkbox" id="adbonus"><br>
-    <label for="acceleration">Acceleration</label>
-    <input type="checkbox" id="acceleration"><br>
-    <label for="ignoretheories">Ignore Theories</label>
-    <input type="checkbox" id="ignoretheories"><br>
-    <label for="accelmult">Acceleration Multiplier:</label>
-    <input id="accelmult" value="2.8538"></br>
-    <input type="button" value="Optimize!" onclick="optimize()">
-    <p id="output"></p>
-    <script src="script.js"></script>
+	<div class="container" style="max-width:800px">
+		<h2 class="text-color text-bold">Exponential Idle Student Optimizer</h2>
+		<h3 class="text-color-light text-bold">
+			Made by <a href="https://github.com/Niedzielan" target="_blank">Niedzielan</a>, 
+			<a href="https://github.com/SashLilac" target="_blank">Milla</a>
+			and <a href="https://github.com/AfuroZamurai" target="_blank">AfuroZamurai</a>
+		</h3>
+		<noscript>
+			<h3>Please enable JavaScript and reload the page.</h3>
+		</noscript>
+		<p class="text-color">
+			This page will determine the most optimal distribution for your sigma /
+			students given your current number of students, number of stars, t, and f(t).
+		</p>
+		<p class="text-color">
+			The values entered should come from the exact same point in time or as close
+			together as you can get them all.
+		</p>
+		<p class="text-color">
+			For your current students, enter the number of students that have not been
+			allocated to theories. For your t, enter the number in the top left corner.
+			For your f(t), input the number after the ee in the top-left corner.
+			For your current stars, go into the "Statistics" menu and enter the number
+			under "Total Stars".
+		</p>
+		<p class="text-color">
+			Ad-bonus should be checked if you have the ad-bonus active. Acceleration
+			should <b><i>only</i></b> be checked if you're planning to use the button
+			regularly, not if you only use it once in a while. The last two options
+			should be left alone unless you know what you're doing.
+		</p>
+		<div>
+			<label for="students">Sigma / Students:</label>
+			<input id="students" placeholder="Your students here"><br>
+		</div>
+		<div>
+			<label for="t">t:</label>
+			<input id="t" placeholder="Your t here"><br>
+		</div>
+		<div>
+			<label for="ft">f(t):</label>
+			<input id="ft" placeholder="Your f(t) here"><br>
+		</div>
+		<div>
+			<label for="stars">Stars:</label>
+			<input id="stars" placeholder="Your stars here"><br>
+		</div>
+		<div>
+			<label for="accelmult">Acceleration Multiplier:</label>
+			<input id="accelmult" placeholder="Your acceleration multiplier here" value="2.8538"></br>
+		</div>
+
+		<div class="cb-container">
+			<div class="cb-div">
+				<label for="adbonus">Ad Bonus</label>
+				<input type="checkbox" id="adbonus">
+			</div>
+			<div class="cb-div">
+				<label for="acceleration">Acceleration</label>
+				<input type="checkbox" id="acceleration">
+			</div>
+			<div class="cb-div">
+				<label for="ignoretheories">Ignore Theories</label>
+				<input type="checkbox" id="ignoretheories"><br>
+			</div>
+		</div>
+		
+		<div style="text-align: center;">
+			<button type="button" class="button" onclick="optimize()">Calculate</button>
+		</div>
+		<p id="output" class="output"></p>
+		<script src="script.js"></script>
+	</div>
 </body>
 
 </html>
