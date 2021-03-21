@@ -8,6 +8,9 @@ function optimize() {
     var ignoreTheories = document.getElementById("ignoretheories").checked
     var acceleration = document.getElementById("acceleration").checked
     var accelerationBonus = parseFloat(document.getElementById("accelmult").value)
+    
+    if(isNaN(accelerationBonus))
+        accelerationBonus = 2.8538;
 
     var log10dmu = ft
     var log10db = (ft * 0.8) - Math.log10(4e6)
@@ -113,7 +116,7 @@ function optimize() {
         "<br>Acceleration: " + acceleration + " and " + accelerationBonus + "x" +
         "<br>" +
         */
-        "Calculated dt: " + dt + "<br>Phi: " + phiDigits + "e" + Math.floor(phi) +
+        "Calculated dt: " + dt.toPrecision(3) + "<br>Phi: " + phiDigits.toPrecision(3) + "e" + Math.floor(phi) +
         "<br>Student distribution: " + order.join(", ")
     )
 }
