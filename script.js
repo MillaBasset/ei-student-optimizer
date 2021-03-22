@@ -72,6 +72,9 @@ function optimize() {
                 )
                 cost = 2
             }
+            else if (i == 6) {
+                continue
+            }
             else {
                 cost = (getCost(order[i] + 1) - getCost(order[i]))
                 if (cost > remainingStudents) {
