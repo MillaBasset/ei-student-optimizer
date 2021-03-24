@@ -13,7 +13,7 @@ function optimize() {
         accelerationBonus = 2.8538;
 
     var log10dmu = ft
-    var log10db = (ft * 0.8) - Math.log10(4e6)
+    var log10db = Math.max(0.0001,(ft * 0.8) - Math.log10(4e6))
     var log10dpsi = Math.max(0,(ft / 25.0 - 1) * Math.log10(2))
 
     var dtSpeedUpgrades = ft / (15.0 * Math.log10(2))
