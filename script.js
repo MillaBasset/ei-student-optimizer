@@ -4,6 +4,9 @@ function optimize() {
     var ft = parseFloat(document.getElementById("ft").value)
     var stars = parseFloat(document.getElementById("stars").value)
 
+    var theories = parseFloat(document.getElementById("theories").value)
+    var theoryBoosts = parseFloat(document.getElementById("theoryboosts").value)
+
     var adBonus = document.getElementById("adbonus").checked
     var ignoreTheories = document.getElementById("ignoretheories").checked
     var acceleration = document.getElementById("acceleration").checked
@@ -11,6 +14,12 @@ function optimize() {
     
     if(isNaN(accelerationBonus))
         accelerationBonus = 2.8538;
+
+    if(isNaN(theories))
+        theories = 0;
+    if(isNaN(theories))
+        theoryBoosts = 0;
+
 
     var log10dmu = ft
     if (ft < 100) {
@@ -75,16 +84,29 @@ function optimize() {
 
     var order = [0, 0, 0, 0, 0, 0, 0]
 
+    var studentCosts = [[20, 5, 5, 5, 5, 5, 5, 5, 20], [10, 10, 10]]
+    var tempStudents = students;
+    theories = Math.min(theories,studentCosts[0].length)
+    theoryBoosts = Math.min(theoryBoosts, studentCosts[1].length)
+
     if (!ignoreTheories) {
-        if (students >= 60) {
-            students -= 60
+        for (var i = 0; i < theories; i++) {
+            tempStudents -= studentCosts[0][i]
         }
-        else if (students >= 20) {
-            students -= 20
-            while (students >= 5) {
-                students -= 5
+        if (theories >= 8) {
+            for (var j = 0; j < theoryBoosts; j++) {
+                tempStudents -= studentCosts[1][j]
             }
         }
+        else if (theoryBoosts > 0) {
+            console.log("Theory Speed upgrades will be ignored as Theory 8 has not been bought")
+        }
+    }
+    if (tempStudents < 0) {
+        console.log("Not enough students for given Theories, continuing with IgnoreTheories assumed True")
+        ignoreTheories = true
+    } else {
+        students = tempStudents
     }
 
     function getBestTotal(order, totalStudents, highest = [0,0,0,0,0,0,0]) {
@@ -215,6 +237,11 @@ function optimize() {
     )
     var phiDigits = Math.pow(10, phi - Math.floor(phi))
 
+    var bonusText = ""
+    if (ignoreTheories) {
+        bonusText += " (Theories ignored)"
+    }
+
     document.getElementById("output").innerHTML = (
         /*
         "Students: " + students + "<br>t: " + t + "<br>f(t): ee" + ft +
@@ -223,6 +250,6 @@ function optimize() {
         "<br>" +
         */
         "Calculated dt: " + dt.toPrecision(3) + "<br>Phi: " + phiDigits.toPrecision(3) + "e" + Math.floor(phi) +
-        "<br>Student distribution: " + order.join(", ")
+        "<br>Student distribution: " + order.join(", ") + "<br>Total Students Spent: " + getCostOrder(order) + bonusText
     )
 }
