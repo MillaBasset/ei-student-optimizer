@@ -13,8 +13,17 @@ function optimize() {
         accelerationBonus = 2.8538;
 
     var log10dmu = ft
-    var log10db = (ft * 0.8) - Math.log10(4e6)
-    var log10dpsi = (ft / 25.0 - 1) * Math.log10(2)
+    if (ft < 100) {
+        //More accurate calculations
+        var db = Math.pow(Math.pow(10,ft),0.8) / 4000000
+        var log10db = Math.log10(db+10)
+        var dpsi = Math.pow(2,(ft/25)-1) - 0.5
+        var log10dpsi = Math.log10(dpsi+10)
+    } else{
+        //Less accurate but works for higher ft
+        var log10db = (ft * 0.8) - Math.log10(4e6)
+        var log10dpsi = (ft / 25.0 - 1) * Math.log10(2)
+    }  
 
     var dtSpeedUpgrades = ft / (15.0 * Math.log10(2))
     var dtSpeed = (dtSpeedUpgrades + 0.1) / 10
