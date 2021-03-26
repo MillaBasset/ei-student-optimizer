@@ -84,7 +84,7 @@ function optimize() {
 
     var order = [0, 0, 0, 0, 0, 0, 0]
 
-    var studentCosts = [[20, 5, 5, 5, 5, 5, 5, 5, 20], [10, 10, 10]]
+    var studentCosts = [[20, 5, 5, 5, 5, 5, 5, 5, 40], [10, 10, 10]]
     var tempStudents = students;
     theories = Math.min(theories,studentCosts[0].length)
     theoryBoosts = Math.min(theoryBoosts, studentCosts[1].length)
