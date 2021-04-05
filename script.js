@@ -1,7 +1,11 @@
 function optimize() {
+    var errorMessage = ""
     var students = parseInt(document.getElementById("students").value)
     var t = parseFloat(document.getElementById("t").value)
     var ft = parseFloat(document.getElementById("ft").value)
+    if (ft <= 0)
+        errorMessage += "The value of f(t) must be greater than 0, student distribution cannot be calculated."
+
     var stars = parseFloat(document.getElementById("stars").value)
 
     var adBonus = document.getElementById("adbonus").checked
@@ -53,15 +57,18 @@ function optimize() {
         return cost
     }
 
-    var boosts = [
-        Math.log10(dt),
-        0.7 * Math.log10(1 + t),
-        Math.log10(1 + stars),
-        log10db / Math.sqrt(100 * log10db),
-        log10dmu / 1300.0,
-        log10dpsi / 225 * Math.sqrt(log10dpsi),
-        0.1
-    ]
+    if (errorMessage === "") {
+        var boosts = [
+            Math.log10(dt),
+            0.7 * Math.log10(1 + t),
+            Math.log10(1 + stars),
+            log10db / Math.sqrt(100 * log10db),
+            log10dmu / 1300.0,
+            log10dpsi / 225 * Math.sqrt(log10dpsi),
+            0.1
+        ]
+    }
+    
 
     function getTotalBoost(order) {
         res = 0
@@ -116,13 +123,15 @@ function optimize() {
         }
     }
 
-    var tempStudents = students
-    var highest = order.slice()
-    while (tempStudents > 0) {
-        var res = getBestTotal(order, tempStudents, highest)
-        order = res[0]
-        tempStudents = res[1]
-        highest = res[2]
+    if (errorMessage === "") {
+        var tempStudents = students
+        var highest = order.slice()
+        while (tempStudents > 0) {
+            var res = getBestTotal(order, tempStudents, highest)
+            order = res[0]
+            tempStudents = res[1]
+            highest = res[2]
+        }
     }
 
     function contains(arrayOfArrays, searchArray) {
@@ -165,41 +174,43 @@ function optimize() {
         return tmp
     }
 
-    var possibles = getAllForks(highest, students, highest)
-    var done_possibles = []
+    if (errorMessage === "") {
+        var possibles = getAllForks(highest, students, highest)
+        var done_possibles = []
 
-    while (possibles.length > 0) {
-        var possible = possibles.shift()
-        done_possibles.push(possible.slice())
-        order = possible.slice()
-        total_students = students
-        while (total_students > 0) {
-            var res = getBestTotal(order, total_students, highest)
-            order = res[0]
-            total_students = res[1]
-            highest = res[2]
-        }
-        tmp_possibles = getAllForks(order, students, highest, possible)
-        for (var tmp_possible_i = 0; tmp_possible_i < tmp_possibles.length; tmp_possible_i++) {
-            var tmp_possible = tmp_possibles[tmp_possible_i]
-            if (contains(possibles, tmp_possible) || contains(done_possibles,tmp_possible)) {
-                continue
+        while (possibles.length > 0) {
+            var possible = possibles.shift()
+            done_possibles.push(possible.slice())
+            order = possible.slice()
+            total_students = students
+            while (total_students > 0) {
+                var res = getBestTotal(order, total_students, highest)
+                order = res[0]
+                total_students = res[1]
+                highest = res[2]
             }
-            else {
-                possibles.push(tmp_possible)
+            tmp_possibles = getAllForks(order, students, highest, possible)
+            for (var tmp_possible_i = 0; tmp_possible_i < tmp_possibles.length; tmp_possible_i++) {
+                var tmp_possible = tmp_possibles[tmp_possible_i]
+                if (contains(possibles, tmp_possible) || contains(done_possibles,tmp_possible)) {
+                    continue
+                }
+                else {
+                    possibles.push(tmp_possible)
+                }
             }
         }
-    }
-    order = highest
+        order = highest
 
-    var phi = (
-        (1 + order[6] * boosts[6]) *
-        (
-            order[0] * boosts[0] + order[1] * boosts[1] + order[2] * boosts[2] +
-            order[3] * boosts[3] + order[4] * boosts[4] + order[5] * boosts[5]
+        var phi = (
+            (1 + order[6] * boosts[6]) *
+            (
+                order[0] * boosts[0] + order[1] * boosts[1] + order[2] * boosts[2] +
+                order[3] * boosts[3] + order[4] * boosts[4] + order[5] * boosts[5]
+            )
         )
-    )
-    var phiDigits = Math.pow(10, phi - Math.floor(phi))
+        var phiDigits = Math.pow(10, phi - Math.floor(phi))
+    }
 
     var bonusText = ""
 
@@ -210,7 +221,7 @@ function optimize() {
         "<br>Acceleration: " + acceleration + " and " + accelerationBonus + "x" +
         "<br>" +
         */
-        "Calculated dt: " + dt.toPrecision(3) + "<br>Phi: " + phiDigits.toPrecision(3) + "e" + Math.floor(phi) +
+        errorMessage !== "" ? errorMessage : "Calculated dt: " + dt.toPrecision(3) + "<br>Phi: " + phiDigits.toPrecision(3) + "e" + Math.floor(phi) +
         "<br>Student distribution: " + order.join(", ") + "<br>Total Students Spent: " + getCostOrder(order) + bonusText
     )
 }
